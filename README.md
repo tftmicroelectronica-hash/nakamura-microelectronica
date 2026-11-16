@@ -1,64 +1,48 @@
 # NAKAMURA MICROELECTRÓNICA
 
-## Sitio web oficial
-
 **La precisión marca la diferencia.**
 
-Página web oficial de NAKAMURA Microelectrónica, empresa especializada en servicios técnicos, reparación electrónica, microelectrónica y mantenimiento de equipos.
+Sitio web institucional adaptable a computadoras, tablets y celulares.
 
-### Tecnologías utilizadas
-
-- HTML5
-- CSS3
-- JavaScript
-- Diseño Responsive
-- GitHub Pages
-
-### Archivos del proyecto
+## Archivos del proyecto
 
 ```text
 nakamura-microelectronica/
-│
 ├── index.html
 ├── style.css
 ├── script.js
 ├── README.md
-│
-├── logo.png
-│
-└── images/
-    ├── hero.jpg
-    ├── nosotros.jpg
-    ├── trabajo1.jpg
-    ├── trabajo2.jpg
-    └── trabajo3.jpg
+└── logo.png
 ```
 
-### Publicación en GitHub Pages
+Coloca el logotipo oficial en la raíz del repositorio con el nombre exacto `logo.png`. Las fotografías externas incluidas son ilustrativas y puedes sustituirlas por imágenes reales del taller.
 
-1. Ingresar al repositorio de GitHub.
-2. Abrir Settings.
-3. Seleccionar Pages.
-4. En Source elegir Deploy from a branch.
-5. Seleccionar la rama main.
-6. Seleccionar la carpeta /root.
-7. Presionar Save.
+## Tecnologías
+- HTML5
+- CSS3 responsive
+- JavaScript
+- Google Fonts
+- Google Maps
 
-### Dirección de la página
+## Publicación en GitHub Pages
+1. Abre el repositorio en GitHub.
+2. Selecciona **Settings → Pages**.
+3. En **Build and deployment**, elige **Deploy from a branch**.
+4. Selecciona la rama `main` y la carpeta `/(root)`.
+5. Pulsa **Save** y espera a que finalice la publicación.
 
-https://tftmicroelectronica-hash.github.io/nakamura-microelectronica/
-
-### Contacto
-
-**NAKAMURA MICROELECTRÓNICA**
-
-- WhatsApp: 0988566090
+## Contacto configurado
+- WhatsApp: 098 856 6090
 - Correo: tftmicroelectronica@gmail.com
+- Facebook: https://www.facebook.com/profile.php?id=61573646852076
+- Instagram: https://www.instagram.com/nakamura_microtech/
+- Ubicación GPS: NAKAMURA MICROTECH, Guayaquil, Ecuador.
 
-### Redes sociales
+El formulario prepara un mensaje y abre WhatsApp; el visitante debe enviarlo manualmente. No almacena datos ni envía correos.
 
-- WhatsApp
-- Facebook
-- Instagram
+## Personalización
+- Sustituye `logo.png` por el logotipo oficial, conservando el nombre.
+- Reemplaza las imágenes de Unsplash por fotografías reales del taller.
+- Los dos espacios de aliados están en `.allies-grid`; puedes sustituir cada marcador por una imagen de logo.
 
-© NAKAMURA MICROELECTRÓNICA. Todos los derechos reservados.rlos desde `index.html`.
+© NAKAMURA MICROELECTRÓNICA.
