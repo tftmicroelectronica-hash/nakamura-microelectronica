@@ -306,3 +306,13 @@
   .ally-card img{max-height:125px}
   .ally-card-dark img{max-height:145px}
 }
+
+/* Sección 06: reseña del cliente */
+.gallery-testimonial{position:relative;display:flex;align-items:center;gap:14px;width:min(390px,100%);box-sizing:border-box;padding:15px 45px 15px 15px;border:1px solid #dce5ee;border-radius:12px;background:#fff;box-shadow:0 8px 24px rgba(16,35,55,.06)}
+.testimonial-avatar{display:grid;place-items:center;flex:0 0 43px;width:43px;height:43px;border-radius:50%;background:linear-gradient(135deg,#e8f1ff,#d8e7ff);color:#2563eb;font-size:13px;font-weight:800;letter-spacing:.3px}
+.testimonial-copy{min-width:0}
+.testimonial-label{display:block;margin-bottom:4px;color:#64748b;font-size:9px;font-weight:800;letter-spacing:1.1px}
+.testimonial-copy strong{display:block;color:var(--navy);font-size:13px;font-weight:800}
+.testimonial-copy p{margin:3px 0 0;color:#475569;font-size:12px;line-height:1.45}
+.testimonial-quote{position:absolute;right:13px;top:7px;color:#dbeafe;font-family:Georgia,serif;font-size:43px;line-height:1}
+@media(max-width:700px){.section-head{align-items:flex-start;flex-direction:column}.gallery-testimonial{width:100%;max-width:430px}}
