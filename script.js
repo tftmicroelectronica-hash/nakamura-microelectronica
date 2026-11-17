@@ -134,12 +134,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const item = items[current], path = item[2];
       img.classList.add("is-changing"); title.classList.add("is-changing"); desc.classList.add("is-changing");
       const preload = new Image();
+      let objectUrl = "";
+      try {
+        // Convertir la imagen JPEG incrustada a Blob para evitar fallos del src data: en Pages.
+        const base64 = path.slice(path.indexOf(",") + 1);
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let k = 0; k < binary.length; k++) bytes[k] = binary.charCodeAt(k);
+        objectUrl = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
+      } catch (error) {
+        console.error("No se pudo preparar la fotografía del equipo:", item[0], error);
+      }
       preload.onload = () => setTimeout(() => {
-        img.src = path; img.alt = item[3]; title.textContent = item[0]; desc.textContent = item[1];
+        if (img.dataset.objectUrl) URL.revokeObjectURL(img.dataset.objectUrl);
+        img.src = objectUrl; img.dataset.objectUrl = objectUrl; img.alt = item[3];
+        title.textContent = item[0]; desc.textContent = item[1];
         img.classList.remove("is-changing"); title.classList.remove("is-changing"); desc.classList.remove("is-changing");
       }, reduced ? 0 : 220);
-      preload.onerror = () => { img.classList.remove("is-changing"); title.classList.remove("is-changing"); desc.classList.remove("is-changing"); };
-      preload.src = path;
+      preload.onerror = () => {
+        console.error("No se pudo cargar la fotografía del equipo:", item[0]);
+        img.classList.remove("is-changing"); title.classList.remove("is-changing"); desc.classList.remove("is-changing");
+      };
+      if (objectUrl) preload.src = objectUrl;
       dots.forEach((d,j) => { d.classList.toggle("active",j===current); d.setAttribute("aria-current",j===current?"true":"false"); });
       cards.slice(current).concat(cards.slice(0,current)).forEach(c => track.appendChild(c));
       cards.forEach(c => c.classList.toggle("is-current",Number(c.dataset.index)===current));
