@@ -27,3 +27,11 @@ ACTUALIZACIÓN DE FOTOGRAFÍAS RECIBIDAS:
 - 01-bonding-machine.jpg: fotografía real suministrada por el usuario del bonding machine.
 - 03-estacion-soldadura.jpg: fotografía real suministrada por el usuario de la estación de soldadura.
 Las otras siete imágenes siguen siendo ilustrativas hasta que se faciliten fotografías reales.
+
+
+CORRECCIÓN DE IMÁGENES ROTAS:
+Las nueve imágenes del carrusel ahora están incrustadas directamente en
+script.js (y la primera también en index.html). Así el navegador no depende
+de rutas relativas ni de que GitHub haya cargado la carpeta de imágenes.
+La carpeta equipment-images se conserva como respaldo para reemplazar
+fotografías posteriormente. Al actualizar, reemplaza index.html y script.js.
