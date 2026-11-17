@@ -1,0 +1,20 @@
+ACTUALIZACIÓN NAKAMURA — SECCIÓN 03
+====================================
+
+Contenido:
+- seccion-03.html: reemplaza en index.html la sección completa cuyo id es "equipamiento".
+- seccion-03.css: pega todo su contenido al final de style.css.
+- seccion-03.js: pega el bloque dentro del DOMContentLoaded existente en script.js,
+  inmediatamente antes del cierre final });.
+
+IMPORTANTE:
+1. Conserva los demás archivos actuales del repositorio, especialmente logo.png,
+   logo-footer.png, logo-empresa1.png y logo-empresa2.png.
+2. No reemplaces el index.html completo con seccion-03.html: es únicamente el bloque
+   de la sección 03.
+3. Las fotografías son imágenes ilustrativas externas de Unsplash.
+4. La marquesina contiene los nueve equipos solicitados y muestra cuatro tarjetas a la vez.
+5. Si el sitio ya tiene cambios posteriores a la versión consultada, conserva esos cambios
+   y aplica únicamente estas tres modificaciones.
+
+Archivos del sitio que se actualizan: index.html, style.css y script.js.
