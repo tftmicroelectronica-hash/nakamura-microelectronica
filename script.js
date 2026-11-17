@@ -191,3 +191,122 @@ document.addEventListener("DOMContentLoaded", () => {
     render(0);start();
   }
 });
+
+
+/* Sección 06: carrusel horizontal infinito de nueve trabajos */
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.getElementById("workGallery");
+  const track = document.getElementById("galleryTrack");
+  const pagination = document.getElementById("galleryPagination");
+  if (!root || !track || !pagination) return;
+
+  let timer = null;
+  let animating = false;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prev = root.querySelector(".gallery-prev");
+  const next = root.querySelector(".gallery-next");
+  const dots = [];
+
+  const cards = () => Array.from(track.children);
+  cards().forEach((card, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", "Mostrar trabajo " + (index + 1));
+    dot.addEventListener("click", () => goTo(index));
+    pagination.appendChild(dot);
+    dots.push(dot);
+  });
+
+  function updateActive() {
+    const all = cards();
+    all.forEach((card, index) => card.classList.toggle("is-active", index === 0));
+    const activeIndex = Number(all[0]?.dataset.galleryIndex ?? all[0]?.getAttribute("data-gallery-index") ?? 0);
+    dots.forEach((dot, index) => dot.setAttribute("aria-current", index === activeIndex ? "true" : "false"));
+  }
+  cards().forEach((card, index) => card.dataset.galleryIndex = String(index));
+  function syncDots() {
+    const index = Number(track.firstElementChild?.dataset.galleryIndex || 0);
+    dots.forEach((dot, i) => dot.setAttribute("aria-current", i === index ? "true" : "false"));
+  }
+  function stop() { if (timer) clearInterval(timer); timer = null; }
+  function start() {
+    if (reducedMotion || timer || document.hidden) return;
+    timer = setInterval(advance, 4500);
+  }
+  function finishForward(first) {
+    track.appendChild(first);
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+    void track.offsetWidth;
+    updateActive();
+    syncDots();
+    animating = false;
+  }
+  function advance() {
+    if (animating) return;
+    const first = track.firstElementChild;
+    if (!first) return;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    const distance = first.getBoundingClientRect().width + gap;
+    animating = true;
+    track.style.transition = "transform .68s cubic-bezier(.22,.61,.36,1)";
+    track.style.transform = "translateX(-" + distance + "px)";
+    const done = () => finishForward(first);
+    track.addEventListener("transitionend", function onEnd(event) {
+      if (event.propertyName !== "transform") return;
+      track.removeEventListener("transitionend", onEnd);
+      done();
+    });
+    setTimeout(() => { if (animating) done(); }, 760);
+  }
+  function retreat() {
+    if (animating) return;
+    const all = cards();
+    const last = all[all.length - 1];
+    if (!last) return;
+    animating = true;
+    track.style.transition = "none";
+    track.insertBefore(last, track.firstElementChild);
+    updateActive();
+    const distance = last.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).gap) || 0);
+    track.style.transform = "translateX(-" + distance + "px)";
+    void track.offsetWidth;
+    track.style.transition = "transform .68s cubic-bezier(.22,.61,.36,1)";
+    track.style.transform = "translateX(0)";
+    const done = () => { track.style.transition = ""; syncDots(); animating = false; };
+    track.addEventListener("transitionend", function onEnd(event) {
+      if (event.propertyName !== "transform") return;
+      track.removeEventListener("transitionend", onEnd);
+      done();
+    });
+    setTimeout(() => { if (animating) done(); }, 760);
+  }
+  function goTo(index) {
+    stop();
+    let current = Number(track.firstElementChild?.dataset.galleryIndex || 0);
+    let steps = (index - current + dots.length) % dots.length;
+    if (steps === 0) { start(); return; }
+    const run = () => {
+      if (steps <= 0) { start(); return; }
+      advance();
+      steps--;
+      const wait = () => {
+        if (animating) { setTimeout(wait, 60); return; }
+        run();
+      };
+      setTimeout(wait, 80);
+    };
+    run();
+  }
+
+  next?.addEventListener("click", () => { stop(); advance(); start(); });
+  prev?.addEventListener("click", () => { stop(); retreat(); start(); });
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", start);
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+  updateActive();
+  syncDots();
+  start();
+});
