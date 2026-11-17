@@ -51,3 +51,14 @@ El formulario prepara un mensaje y abre WhatsApp; el visitante debe enviarlo man
 ## Logotipo oficial y contraste
 El encabezado y el pie muestran únicamente `logo.png`, sin texto duplicado junto a la imagen. El logotipo se presenta en PNG RGBA transparente, con proporciones conservadas y un tamaño adaptable a escritorio y móvil. Para máxima nitidez en pantallas Retina, conserva el PNG de alta resolución o reemplázalo por un SVG vectorial oficial; evita usar capturas o archivos comprimidos.
 El CSS mantiene texto oscuro en superficies claras y texto blanco en las secciones oscuras (`.hero`, `.dark`, `.footer` y los modificadores `.theme-dark` / `[data-theme="dark"]`). Las secciones claras pueden identificarse con `.theme-light` o `[data-theme="light"]`.
+
+
+## Actualización visual: cabecera e inicio
+- Barra superior con correo, Facebook, Instagram y acceso a Google Maps.
+- Navegación principal con Inicio, Nosotros, Especialidades, Equipamiento, Equipos atendidos, Proceso y Contacto.
+- Hero técnico con fondo oscuro, trama de circuitos, acentos RGB y botones de acción.
+- Logotipo principal transparente en `logo.png`.
+- Variante `logo-footer.png` con letras blancas y símbolo RGB conservado para mejorar el contraste en el pie oscuro.
+
+### Archivos de marca
+Mantén `logo.png` y `logo-footer.png` en la misma carpeta raíz que `index.html`. Ambos son PNG de alta resolución. Para pantallas Retina, evita comprimirlos o ampliarlos desde una imagen pequeña; un SVG vectorial oficial es la alternativa ideal.

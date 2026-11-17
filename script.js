@@ -1,4 +1,3 @@
-/* NAKAMURA MICROELECTRÓNICA | Interactividad */
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
     });
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 820) closeMenu();
+      if (window.innerWidth > 900) closeMenu();
     });
   }
 
