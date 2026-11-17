@@ -248,3 +248,61 @@
   .hero-foot{margin-top:40px}
   .footer .footer-logo-img{width:190px;max-height:52px}
 }
+
+
+/* =========================================================
+   EMPRESAS ASOCIADAS — LOGOTIPOS CON ENLACES
+   ========================================================= */
+.allies-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  max-width:760px;
+  margin:0 auto;
+  align-items:stretch;
+}
+.ally-card{
+  min-height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px 26px;
+  overflow:hidden;
+  border:1px solid #dce3ea;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(16,24,32,.07);
+  text-decoration:none;
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.ally-card:hover,
+.ally-card:focus-visible{
+  transform:translateY(-5px);
+  border-color:#9bb6d2;
+  box-shadow:0 16px 38px rgba(16,24,32,.13);
+  outline:none;
+}
+.ally-card img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  max-height:145px;
+  object-fit:contain;
+}
+.ally-card-dark{
+  background:#050505;
+  border-color:#20252b;
+}
+.ally-card-dark:hover,
+.ally-card-dark:focus-visible{
+  border-color:#52677d;
+}
+.ally-card-dark img{
+  max-height:160px;
+}
+@media(max-width:600px){
+  .allies-grid{grid-template-columns:1fr;max-width:420px;gap:16px}
+  .ally-card{min-height:165px;padding:18px 22px}
+  .ally-card img{max-height:125px}
+  .ally-card-dark img{max-height:145px}
+}
