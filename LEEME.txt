@@ -1,20 +1,32 @@
-ACTUALIZACIÓN NAKAMURA — SECCIÓN 03
-====================================
+NAKAMURA MICROELECTRÓNICA — ACTUALIZACIÓN COMPLETA
+====================================================
 
-Contenido:
-- seccion-03.html: reemplaza en index.html la sección completa cuyo id es "equipamiento".
-- seccion-03.css: pega todo su contenido al final de style.css.
-- seccion-03.js: pega el bloque dentro del DOMContentLoaded existente en script.js,
-  inmediatamente antes del cierre final });.
+Este paquete corrige la entrega anterior. Incluye archivos listos para subir:
 
-IMPORTANTE:
-1. Conserva los demás archivos actuales del repositorio, especialmente logo.png,
-   logo-footer.png, logo-empresa1.png y logo-empresa2.png.
-2. No reemplaces el index.html completo con seccion-03.html: es únicamente el bloque
-   de la sección 03.
-3. Las fotografías son imágenes ilustrativas externas de Unsplash.
-4. La marquesina contiene los nueve equipos solicitados y muestra cuatro tarjetas a la vez.
-5. Si el sitio ya tiene cambios posteriores a la versión consultada, conserva esos cambios
-   y aplica únicamente estas tres modificaciones.
+1. index.html       -> reemplaza el index.html actual.
+2. script.js        -> reemplaza el script.js actual.
+3. section03.css    -> archivo NUEVO; súbelo a la raíz del repositorio.
+4. LEEME.txt        -> estas instrucciones.
 
-Archivos del sitio que se actualizan: index.html, style.css y script.js.
+NO reemplaces style.css. El index.html actualizado carga el archivo adicional
+section03.css después de style.css, por lo que se conservan los estilos actuales.
+
+TAMBIÉN CONSERVA en la raíz del repositorio los archivos existentes:
+- style.css
+- logo.png
+- logo-footer.png
+- logo-empresa1.png
+- logo-empresa2.png
+
+CAMBIOS YA INTEGRADOS:
+- Carrusel automático de cinco imágenes con título y controles indicadores.
+- Desaparece el texto inferior de la sección 03.
+- Ticker vertical con los nueve nombres solicitados y cuatro tarjetas visibles.
+- Se conserva el resto de las secciones, menú y formulario WhatsApp del sitio.
+
+SUBIDA:
+En GitHub > repositorio > Add file > Upload files, arrastra index.html,
+script.js y section03.css. Confirma el commit. No borres los logotipos ni style.css.
+
+Si GitHub Pages no actualiza al instante, espera unos minutos y recarga con
+Ctrl + F5 para evitar la caché del navegador.
