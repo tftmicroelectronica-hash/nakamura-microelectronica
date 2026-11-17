@@ -1,32 +1,29 @@
-NAKAMURA MICROELECTRÓNICA — ACTUALIZACIÓN COMPLETA
-====================================================
+NAKAMURA — CARRUSEL SINCRONIZADO (RT809H)
 
-Este paquete corrige la entrega anterior. Incluye archivos listos para subir:
+Archivos: index.html completo, script.js completo, section03.css y
+equipment-images/ con nueve imágenes.
 
-1. index.html       -> reemplaza el index.html actual.
-2. script.js        -> reemplaza el script.js actual.
-3. section03.css    -> archivo NUEVO; súbelo a la raíz del repositorio.
-4. LEEME.txt        -> estas instrucciones.
+Sube/reemplaza index.html y script.js; sube section03.css y la carpeta
+equipment-images completa a la raíz del repositorio.
 
-NO reemplaces style.css. El index.html actualizado carga el archivo adicional
-section03.css después de style.css, por lo que se conservan los estilos actuales.
+Conserva el style.css y los logotipos actuales del sitio.
+index.html carga style.css y section03.css.
 
-TAMBIÉN CONSERVA en la raíz del repositorio los archivos existentes:
-- style.css
-- logo.png
-- logo-footer.png
-- logo-empresa1.png
-- logo-empresa2.png
+El carrusel, título, descripción y ticker comparten un único catálogo
+en JavaScript. Cada diapositiva corresponde al equipo de la tarjeta
+superior del ticker. El ticker muestra cuatro tarjetas a la vez.
+El modelo de programador está corregido a RT809H.
 
-CAMBIOS YA INTEGRADOS:
-- Carrusel automático de cinco imágenes con título y controles indicadores.
-- Desaparece el texto inferior de la sección 03.
-- Ticker vertical con los nueve nombres solicitados y cuatro tarjetas visibles.
-- Se conserva el resto de las secciones, menú y formulario WhatsApp del sitio.
+Las imágenes son ilustrativas generadas para representar cada tipo de equipo,
+no fotos verificadas de las unidades reales del taller ni fotografías oficiales
+del fabricante. Puedes reemplazarlas por fotos propias conservando los nombres
+de archivo dentro de equipment-images.
 
-SUBIDA:
-En GitHub > repositorio > Add file > Upload files, arrastra index.html,
-script.js y section03.css. Confirma el commit. No borres los logotipos ni style.css.
+En GitHub > Add file > Upload files, arrastra los archivos y la carpeta
+equipment-images. Confirma el commit. No elimines style.css ni logotipos.
 
-Si GitHub Pages no actualiza al instante, espera unos minutos y recarga con
-Ctrl + F5 para evitar la caché del navegador.
+
+ACTUALIZACIÓN DE FOTOGRAFÍAS RECIBIDAS:
+- 01-bonding-machine.jpg: fotografía real suministrada por el usuario del bonding machine.
+- 03-estacion-soldadura.jpg: fotografía real suministrada por el usuario de la estación de soldadura.
+Las otras siete imágenes siguen siendo ilustrativas hasta que se faciliten fotografías reales.
