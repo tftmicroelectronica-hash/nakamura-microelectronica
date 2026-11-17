@@ -223,7 +223,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeIndex = Number(all[0]?.dataset.galleryIndex ?? all[0]?.getAttribute("data-gallery-index") ?? 0);
     dots.forEach((dot, index) => dot.setAttribute("aria-current", index === activeIndex ? "true" : "false"));
   }
+  // Conserva el orden original de las diapositivas: COF siempre inicia el carrusel.
   cards().forEach((card, index) => card.dataset.galleryIndex = String(index));
+  function restoreFirstSlide() {
+    const originalOrder = cards().sort((a, b) =>
+      Number(a.dataset.galleryIndex) - Number(b.dataset.galleryIndex)
+    );
+    originalOrder.forEach(card => track.appendChild(card));
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+    animating = false;
+    updateActive();
+    syncDots();
+  }
   function syncDots() {
     const index = Number(track.firstElementChild?.dataset.galleryIndex || 0);
     dots.forEach((dot, i) => dot.setAttribute("aria-current", i === index ? "true" : "false"));
@@ -231,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function stop() { if (timer) clearInterval(timer); timer = null; }
   function start() {
     if (reducedMotion || timer || document.hidden) return;
-    timer = setInterval(advance, 4500);
+    timer = setInterval(advance, 9000);
   }
   function finishForward(first) {
     track.appendChild(first);
@@ -306,7 +318,13 @@ document.addEventListener("DOMContentLoaded", () => {
   root.addEventListener("focusin", stop);
   root.addEventListener("focusout", start);
   document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
-  updateActive();
-  syncDots();
+  restoreFirstSlide();
   start();
+
+  // Si el navegador restaura la página desde caché, vuelve a mostrar primero la reparación COF.
+  window.addEventListener("pageshow", () => {
+    stop();
+    restoreFirstSlide();
+    start();
+  });
 });
