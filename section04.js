@@ -17,7 +17,12 @@
         {model:"Generador portátil a gasolina",tag:"No arranca",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 0%",alt:"Vista general del generador Cummins Onan P9500dfi",fault:"El motor gira con dificultad o no logra encender.",diagnosis:"Verificar combustible, bujía, filtro, compresión y circuito de apagado. Comprobar continuidad y estado del sistema de encendido."},
         {model:"Generador con salida inestable",tag:"Voltaje / frecuencia",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"100% 0%",alt:"Inspección del depósito de combustible del generador Cummins",fault:"Las luces fluctúan o el voltaje medido varía bajo carga.",diagnosis:"Medir tensión y frecuencia sin carga y con carga controlada; revisar AVR, escobillas, conexiones y velocidad del motor."},
         {model:"Generador: no entrega energía",tag:"Alternador / protección",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 100%",alt:"Detalle de componentes del motor del generador Cummins",fault:"El motor funciona, pero no hay tensión útil en la salida.",diagnosis:"Inspeccionar interruptor, cableado, excitación, AVR y bobinados; realizar pruebas de aislamiento según especificación del fabricante."},
-        {model:"Mantenimiento y Reparación de Generador Portátil Cummins Onan P9500dfi",tag:"Mantenimiento preventivo y correctivo",gallery:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",galleryAlts:["Vista general y panel de control del generador Cummins Onan P9500dfi","Inspección del depósito de combustible","Detalle de componentes inferiores del motor","Inspección del conjunto de válvulas y motor"],galleryCaptions:["Vista general y panel de control","Inspección del depósito","Componentes inferiores","Conjunto de válvulas y motor"],fault:"Mantenimiento preventivo y correctivo completo de generador eléctrico portátil Cummins.",diagnosis:"Servicio orientado a optimizar el rendimiento del motor y prolongar la vida útil del equipo. La verificación final debe comprobar arranque, estabilidad y salida eléctrica según las especificaciones del fabricante."}
+        {model:"Mantenimiento y Reparación de Generador Portátil Cummins Onan P9500dfi",tag:"Mantenimiento preventivo y correctivo",carousel:[
+          {src:"./cummins-01.webp",alt:"Vista general y panel de control del generador Cummins Onan P9500dfi",caption:"Vista general y panel de control"},
+          {src:"./cummins-02.webp",alt:"Detalle del depósito de combustible del generador Cummins Onan P9500dfi",caption:"Depósito de combustible"},
+          {src:"./cummins-03.webp",alt:"Detalle de los componentes inferiores del generador Cummins Onan P9500dfi",caption:"Componentes inferiores"},
+          {src:"./cummins-04.webp",alt:"Inspección del conjunto de válvulas del generador Cummins Onan P9500dfi",caption:"Conjunto de válvulas"}
+        ],fault:"Mantenimiento preventivo y correctivo completo de generador eléctrico portátil Cummins.",diagnosis:"Servicio orientado a optimizar el rendimiento del motor y prolongar la vida útil del equipo. La verificación final debe comprobar arranque, estabilidad y salida eléctrica según las especificaciones del fabricante."}
       ]
     },
     audio: {
@@ -81,13 +86,52 @@
   const cases=overlay.querySelector(".equipment-cases");
   let previousFocus=null;
 
+  function initCumminsCarousels(root){
+    root.querySelectorAll("[data-cummins-carousel]").forEach(carousel=>{
+      if(carousel.dataset.ready==="true") return;
+      carousel.dataset.ready="true";
+      const slides=[...carousel.querySelectorAll(".cummins-slide")];
+      const dots=[...carousel.querySelectorAll(".cummins-dot")];
+      const prev=carousel.querySelector(".cummins-prev"), next=carousel.querySelector(".cummins-next");
+      if(slides.length<2) return;
+      let active=0,timer=null,resumeTimer=null,startX=0;
+      const show=index=>{
+        active=(index+slides.length)%slides.length;
+        slides.forEach((slide,i)=>{slide.classList.toggle("is-active",i===active);slide.setAttribute("aria-hidden",i===active?"false":"true");});
+        dots.forEach((dot,i)=>{dot.classList.toggle("is-active",i===active);dot.setAttribute("aria-current",i===active?"true":"false");});
+      };
+      const stop=()=>{if(timer) clearInterval(timer);timer=null;};
+      const start=()=>{stop();timer=setInterval(()=>show(active+1),4500);};
+      const pause=()=>{stop();if(resumeTimer) clearTimeout(resumeTimer);resumeTimer=setTimeout(start,9000);};
+      prev.addEventListener("click",()=>{show(active-1);pause();});
+      next.addEventListener("click",()=>{show(active+1);pause();});
+      dots.forEach((dot,i)=>dot.addEventListener("click",()=>{show(i);pause();}));
+      carousel.addEventListener("mouseenter",stop);
+      carousel.addEventListener("mouseleave",start);
+      carousel.addEventListener("focusin",stop);
+      carousel.addEventListener("focusout",start);
+      carousel.addEventListener("touchstart",event=>{startX=event.changedTouches[0].clientX;stop();},{passive:true});
+      carousel.addEventListener("touchend",event=>{const delta=event.changedTouches[0].clientX-startX;if(Math.abs(delta)>45)show(active+(delta<0?1:-1));pause();},{passive:true});
+      carousel.addEventListener("keydown",event=>{if(event.key==="ArrowLeft"){show(active-1);pause();}else if(event.key==="ArrowRight"){show(active+1);pause();}});
+      start();
+    });
+  }
+
   function openCategory(key,trigger){
     const category=categories[key];
     if(!category) return;
     previousFocus=trigger;
     title.textContent=category.title;
     intro.textContent=category.intro;
-    cases.innerHTML=category.cases.map(item=>{const gallery=item.gallery?'<div class="equipment-case-gallery">'+item.galleryCaptions.map((caption,index)=>'<figure><div class="equipment-case-photo" role="img" aria-label="'+item.galleryAlts[index]+'" style="background-image:url(\''+item.gallery+'\');background-position:'+["0% 0%","100% 0%","0% 100%","100% 100%"][index]+'"></div><figcaption>'+caption+'</figcaption></figure>').join("")+'</div>':item.imageSheet?'<div class="equipment-case-cover" role="img" aria-label="'+item.alt+'" style="background-image:url(\''+item.imageSheet+'\');background-position:'+item.imagePosition+'"></div>':'<img src="'+item.image+'" alt="'+item.alt+'" loading="lazy">';return '<article class="equipment-case">'+gallery+'<div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3><p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p></div></article>';}).join("");
+    cases.innerHTML=category.cases.map(item=>{
+      const gallery=item.carousel
+        ? '<div class="cummins-carousel" data-cummins-carousel aria-label="Fotografías del generador Cummins Onan P9500dfi"><div class="cummins-viewport">'+item.carousel.map((photo,index)=>'<figure class="cummins-slide'+(index===0?' is-active':'')+'" aria-hidden="'+(index===0?'false':'true')+'"><img src="'+photo.src+'" alt="'+photo.alt+'" loading="'+(index===0?'eager':'lazy')+'" width="1600" height="1200"><figcaption>'+photo.caption+'</figcaption></figure>').join("")+'</div><button class="cummins-arrow cummins-prev" type="button" aria-label="Fotografía anterior">‹</button><button class="cummins-arrow cummins-next" type="button" aria-label="Fotografía siguiente">›</button><div class="cummins-controls" aria-label="Seleccionar fotografía">'+item.carousel.map((photo,index)=>'<button class="cummins-dot'+(index===0?' is-active':'')+'" type="button" aria-label="Ver fotografía '+(index+1)+'" aria-current="'+(index===0?'true':'false')+'" data-cummins-slide="'+index+'"></button>').join("")+'</div></div>'
+        : item.imageSheet
+          ? '<div class="equipment-case-cover" role="img" aria-label="'+item.alt+'" style="background-image:url(\''+item.imageSheet+'\');background-position:'+item.imagePosition+'"></div>'
+          : '<img src="'+item.image+'" alt="'+item.alt+'" loading="lazy">';
+      return '<article class="equipment-case">'+gallery+'<div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3><p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p></div></article>';
+    }).join("");
+    initCumminsCarousels(cases);
     overlay.hidden=false;
     document.body.classList.add("equipment-modal-open");
     closeButton.focus();
