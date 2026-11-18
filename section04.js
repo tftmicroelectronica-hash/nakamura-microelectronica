@@ -12,11 +12,12 @@
     },
     generadores: {
       title:"Generadores",
-      intro:"Ejemplos de revisión de generadores portátiles y estacionarios, con énfasis en arranque, generación y estabilidad eléctrica.",
+      intro:"Casos de referencia para generadores portátiles y estacionarios, con énfasis en arranque, generación y estabilidad eléctrica.",
       cases:[
         {model:"Generador portátil a gasolina",tag:"No arranca",image:"https://images.unsplash.com/photo-1473341304170-971facb5a3a4?auto=format&fit=crop&w=900&q=85",alt:"Equipo generador eléctrico",fault:"El motor gira con dificultad o no logra encender.",diagnosis:"Verificar combustible, bujía, filtro, compresión y circuito de apagado. Comprobar continuidad y estado del sistema de encendido."},
         {model:"Generador con salida inestable",tag:"Voltaje / frecuencia",image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=85",alt:"Instalación de generación eléctrica",fault:"Las luces fluctúan o el voltaje medido varía bajo carga.",diagnosis:"Medir tensión y frecuencia sin carga y con carga controlada; revisar AVR, escobillas, conexiones y velocidad del motor."},
-        {model:"Generador: no entrega energía",tag:"Alternador / protección",image:"https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=900&q=85",alt:"Equipos de energía eléctrica",fault:"El motor funciona, pero no hay tensión útil en la salida.",diagnosis:"Inspeccionar interruptor, cableado, excitación, AVR y bobinados; realizar pruebas de aislamiento según especificación del fabricante."}
+        {model:"Generador: no entrega energía",tag:"Alternador / protección",image:"https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=900&q=85",alt:"Equipos de energía eléctrica",fault:"El motor funciona, pero no hay tensión útil en la salida.",diagnosis:"Inspeccionar interruptor, cableado, excitación, AVR y bobinados; realizar pruebas de aislamiento según especificación del fabricante."},
+        {model:"Mantenimiento y Reparación de Generador Portátil Cummins Onan P9500dfi",tag:"Mantenimiento preventivo y correctivo",gallery:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",galleryAlts:["Vista general y panel de control del generador Cummins Onan P9500dfi","Inspección del depósito de combustible","Detalle de componentes inferiores del motor","Inspección del conjunto de válvulas y motor"],galleryCaptions:["Vista general y panel de control","Inspección del depósito","Componentes inferiores","Conjunto de válvulas y motor"],fault:"Mantenimiento preventivo y correctivo completo de generador eléctrico portátil Cummins.",diagnosis:"Servicio orientado a optimizar el rendimiento del motor y prolongar la vida útil del equipo. La verificación final debe comprobar arranque, estabilidad y salida eléctrica según las especificaciones del fabricante."}
       ]
     },
     audio: {
@@ -86,7 +87,7 @@
     previousFocus=trigger;
     title.textContent=category.title;
     intro.textContent=category.intro;
-    cases.innerHTML=category.cases.map(item=>'<article class="equipment-case"><img src="'+item.image+'" alt="'+item.alt+'" loading="lazy"><div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3><p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p></div></article>').join("");
+    cases.innerHTML=category.cases.map(item=>{const gallery=item.gallery?'<div class="equipment-case-gallery">'+item.galleryCaptions.map((caption,index)=>'<figure><div class="equipment-case-photo" role="img" aria-label="'+item.galleryAlts[index]+'" style="background-image:url(\''+item.gallery+'\');background-position:'+["0% 0%","100% 0%","0% 100%","100% 100%"][index]+'"></div><figcaption>'+caption+'</figcaption></figure>').join("")+'</div>':'<img src="'+item.image+'" alt="'+item.alt+'" loading="lazy">';return '<article class="equipment-case">'+gallery+'<div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3><p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p></div></article>';}).join("");
     overlay.hidden=false;
     document.body.classList.add("equipment-modal-open");
     closeButton.focus();
