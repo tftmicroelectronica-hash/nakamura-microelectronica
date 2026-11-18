@@ -40,12 +40,12 @@
       ]
     },
     monitores: {
-      title:"Monitores",
-      intro:"Ejemplos de diagnóstico para monitores LCD y LED de computadora, señal de video, alimentación e iluminación.",
+      title:"Laptops",
+      intro:"Casos de referencia para diagnóstico y reparación de laptops: alimentación, pantalla, teclado y rendimiento del equipo.",
       cases:[
-        {model:"Monitor LED: pantalla negra",tag:"Backlight",image:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=85",alt:"Monitor de computadora",fault:"El indicador enciende, pero no se observa imagen.",diagnosis:"Verificar señal de video, fuente, fusibles, reguladores y retroiluminación; realizar prueba de imagen con linterna."},
-        {model:"Monitor con imagen intermitente",tag:"Conectores / alimentación",image:"https://images.unsplash.com/photo-1585792180666-f7347c490ee2?auto=format&fit=crop&w=900&q=85",alt:"Pantalla de monitor",fault:"La imagen aparece y desaparece al mover el cable o después de calentarse.",diagnosis:"Probar cable y puerto, inspeccionar soldaduras, conectores LVDS/eDP y estabilidad de las tensiones de alimentación."},
-        {model:"Monitor con líneas o colores anormales",tag:"Panel / procesamiento",image:"https://images.unsplash.com/photo-1614624532983-4ce03382d63d?auto=format&fit=crop&w=900&q=85",alt:"Monitor mostrando contenido",fault:"Presenta líneas, parpadeo o tonalidades incorrectas.",diagnosis:"Descartar primero cable y fuente de señal; revisar placa scaler, flex del panel y tensiones de referencia."}
+        {model:"Laptop: no enciende",tag:"Alimentación / placa",image:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",alt:"Laptop abierta para revisión técnica",fault:"El equipo no enciende o no responde al presionar el botón de encendido.",diagnosis:"Verificar cargador, conector DC, batería, circuito de carga y líneas principales de alimentación en la placa madre."},
+        {model:"Laptop con pantalla negra",tag:"Pantalla / video",image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85",alt:"Computadora portátil",fault:"La laptop enciende, pero no muestra imagen o presenta fallas de visualización.",diagnosis:"Comprobar retroiluminación, cable flex, pantalla, memoria RAM y señal de video; realizar pruebas con una pantalla externa."},
+        {model:"Laptop lenta o con sobrecalentamiento",tag:"Mantenimiento / refrigeración",image:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=900&q=85",alt:"Laptop sobre escritorio",fault:"El equipo trabaja lentamente, se calienta demasiado o se apaga inesperadamente.",diagnosis:"Inspeccionar ventilador y disipador, limpiar el sistema de refrigeración, renovar pasta térmica y revisar almacenamiento y estado del sistema."}
       ]
     },
     impresoras: {
