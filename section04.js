@@ -15,7 +15,13 @@
       intro:"Casos de referencia para generadores portátiles y estacionarios, con énfasis en arranque, generación y estabilidad eléctrica.",
       cases:[
         {model:"Generador portátil a gasolina",tag:"No arranca",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 0%",alt:"Vista general del generador Cummins Onan P9500dfi",fault:"El motor gira con dificultad o no logra encender.",diagnosis:"Verificar combustible, bujía, filtro, compresión y circuito de apagado. Comprobar continuidad y estado del sistema de encendido."},
-        {model:"Generador con salida inestable",tag:"Voltaje / frecuencia",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"100% 0%",alt:"Inspección del depósito de combustible del generador Cummins",fault:"Las luces fluctúan o el voltaje medido varía bajo carga.",diagnosis:"Medir tensión y frecuencia sin carga y con carga controlada; revisar AVR, escobillas, conexiones y velocidad del motor."},
+        {model:"Generador VMAX — reparación y mantenimiento",tag:"Soldadura / mantenimiento completo",spriteCarousel:true,carousel:[
+          {src:"./assets/generadores/vmax-gallery.webp",position:"0%",alt:"Vista general del generador portátil VMAX GN13000EW"},
+          {src:"./assets/generadores/vmax-gallery.webp",position:"25%",alt:"Protección metálica del silenciador del generador VMAX"},
+          {src:"./assets/generadores/vmax-gallery.webp",position:"50%",alt:"Detalle de la pieza metálica desmontada para corregir la soldadura"},
+          {src:"./assets/generadores/vmax-gallery.webp",position:"75%",alt:"Detalle del conjunto de salida de gases del generador VMAX"},
+          {src:"./assets/generadores/vmax-gallery.webp",position:"100%",alt:"Mantenimiento del silenciador y componentes del motor VMAX"}
+        ],summary:"¡Confía en los expertos para mantener tu generador en óptimas condiciones! Recibimos un generador VMAX con la protección metálica de quemaduras mal soldada. Corregimos el error y realizamos un mantenimiento completo para asegurar su óptimo funcionamiento."},
         {model:"Generador: no entrega energía",tag:"Alternador / protección",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 100%",alt:"Detalle de componentes del motor del generador Cummins",fault:"El motor funciona, pero no hay tensión útil en la salida.",diagnosis:"Inspeccionar interruptor, cableado, excitación, AVR y bobinados; realizar pruebas de aislamiento según especificación del fabricante."},
         {model:"Mantenimiento y Reparación de Generador Portátil Cummins Onan P9500dfi",tag:"Mantenimiento preventivo y correctivo",carousel:[
           {src:"./cummins-01.webp",alt:"Vista general y panel de control del generador Cummins Onan P9500dfi",caption:"Vista general y panel de control"},
@@ -86,13 +92,13 @@
   const cases=overlay.querySelector(".equipment-cases");
   let previousFocus=null;
 
-  function initCumminsCarousels(root){
-    root.querySelectorAll("[data-cummins-carousel]").forEach(carousel=>{
+  function initCaseCarousels(root){
+    root.querySelectorAll("[data-case-carousel]").forEach(carousel=>{
       if(carousel.dataset.ready==="true") return;
       carousel.dataset.ready="true";
-      const slides=[...carousel.querySelectorAll(".cummins-slide")];
-      const dots=[...carousel.querySelectorAll(".cummins-dot")];
-      const prev=carousel.querySelector(".cummins-prev"), next=carousel.querySelector(".cummins-next");
+      const slides=[...carousel.querySelectorAll(".case-slide")];
+      const dots=[...carousel.querySelectorAll(".case-dot")];
+      const prev=carousel.querySelector(".case-prev"), next=carousel.querySelector(".case-next");
       if(slides.length<2) return;
       let active=0,timer=null,resumeTimer=null,startX=0;
       const show=index=>{
@@ -125,13 +131,13 @@
     intro.textContent=category.intro;
     cases.innerHTML=category.cases.map(item=>{
       const gallery=item.carousel
-        ? '<div class="cummins-carousel" data-cummins-carousel aria-label="Fotografías del generador Cummins Onan P9500dfi"><div class="cummins-viewport">'+item.carousel.map((photo,index)=>'<figure class="cummins-slide'+(index===0?' is-active':'')+'" aria-hidden="'+(index===0?'false':'true')+'"><img src="'+photo.src+'" alt="'+photo.alt+'" loading="'+(index===0?'eager':'lazy')+'" width="1600" height="1200"></figure>').join("")+'</div><button class="cummins-arrow cummins-prev" type="button" aria-label="Fotografía anterior">‹</button><button class="cummins-arrow cummins-next" type="button" aria-label="Fotografía siguiente">›</button><div class="cummins-controls" aria-label="Seleccionar fotografía">'+item.carousel.map((photo,index)=>'<button class="cummins-dot'+(index===0?' is-active':'')+'" type="button" aria-label="Ver fotografía '+(index+1)+'" aria-current="'+(index===0?'true':'false')+'" data-cummins-slide="'+index+'"></button>').join("")+'</div></div>'
+        ? '<div class="case-carousel" data-case-carousel aria-label="Carrusel de fotografías del equipo atendido"><div class="case-viewport">'+item.carousel.map((photo,index)=>'<figure class="case-slide'+(index===0?' is-active':'')+'" aria-hidden="'+(index===0?'false':'true')+'">'+(item.spriteCarousel?'<div class="case-slide-image" role="img" aria-label="'+photo.alt+'" style="background-image:url(\''+photo.src+'\');background-position:0 '+photo.position+'"></div>':'<img src="'+photo.src+'" alt="'+photo.alt+'" loading="'+(index===0?'eager':'lazy')+'" width="640" height="480">')+'</figure>').join("")+'</div><button class="case-arrow case-prev" type="button" aria-label="Fotografía anterior">‹</button><button class="case-arrow case-next" type="button" aria-label="Fotografía siguiente">›</button><div class="case-controls" aria-label="Seleccionar fotografía">'+item.carousel.map((photo,index)=>'<button class="case-dot'+(index===0?' is-active':'')+'" type="button" aria-label="Ver fotografía '+(index+1)+'" aria-current="'+(index===0?'true':'false')+'" data-case-slide="'+index+'"></button>').join("")+'</div></div>'
         : item.imageSheet
           ? '<div class="equipment-case-cover" role="img" aria-label="'+item.alt+'" style="background-image:url(\''+item.imageSheet+'\');background-position:'+item.imagePosition+'"></div>'
           : '<img src="'+item.image+'" alt="'+item.alt+'" loading="lazy">';
-      return '<article class="equipment-case">'+gallery+'<div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3><p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p></div></article>';
+      return '<article class="equipment-case">'+gallery+'<div class="equipment-case-body"><span class="equipment-case-tag">'+item.tag+'</span><h3>'+item.model+'</h3>'+(item.summary?'<p class="equipment-case-summary">'+item.summary+'</p>':'<p><strong>Falla reportada:</strong> '+item.fault+'</p><p class="equipment-diagnosis"><strong>Diagnóstico técnico:</strong> '+item.diagnosis+'</p>')+'</div></article>';
     }).join("");
-    initCumminsCarousels(cases);
+    initCaseCarousels(cases);
     overlay.hidden=false;
     document.body.classList.add("equipment-modal-open");
     closeButton.focus();

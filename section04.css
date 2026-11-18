@@ -32,18 +32,21 @@ body.equipment-modal-open{overflow:hidden}
 /* Portadas de los casos de referencia: recortes de las fotografías originales */
 .equipment-case-cover{width:100%;aspect-ratio:16/9;background-repeat:no-repeat;background-size:200% 200%;background-color:#e8edf3}
 
-/* Carrusel real de fotografías originales · Cummins Onan P9500dfi */
-.cummins-carousel{position:relative;overflow:hidden;background:#101923}
-.cummins-viewport{position:relative;aspect-ratio:4/3;overflow:hidden;background:#101923}
-.cummins-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity .5s ease}
-.cummins-slide.is-active{opacity:1;visibility:visible}
-.cummins-slide img{display:block;width:100%;height:100%;object-fit:contain;background:#101923}
-.cummins-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:38px;height:38px;transform:translateY(-50%);border:1px solid #ffffff88;border-radius:50%;background:#08131dbb;color:#fff;font-size:27px;line-height:1;cursor:pointer}
-.cummins-arrow:hover{background:#08131df2}
-.cummins-prev{left:12px}.cummins-next{right:12px}
-.cummins-controls{position:absolute;z-index:2;left:50%;bottom:13px;display:flex;gap:8px;transform:translateX(-50%)}
-.cummins-dot{width:9px;height:9px;padding:0;border:1px solid #fff;border-radius:50%;background:#ffffff66;cursor:pointer}
-.cummins-dot.is-active{width:23px;border-radius:8px;background:#fff}
-.cummins-arrow:focus-visible,.cummins-dot:focus-visible{outline:2px solid #28bd72;outline-offset:3px}
-@media(max-width:560px){.cummins-arrow{width:34px;height:34px}}
-@media(prefers-reduced-motion:reduce){.cummins-slide{transition:none}}
+/* Carrusel de fotografías de los casos atendidos: sin pies de imagen */
+.case-carousel{position:relative;overflow:hidden;background:#101923}
+.case-viewport{position:relative;aspect-ratio:16/10;overflow:hidden;background:#101923}
+.case-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity .45s ease}
+.case-slide.is-active{opacity:1;visibility:visible}
+.case-slide img{display:block;width:100%;height:100%;object-fit:cover;background:#101923}
+.case-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:38px;height:38px;transform:translateY(-50%);border:1px solid #ffffff88;border-radius:50%;background:#08131dcc;color:#fff;font-size:27px;line-height:1;cursor:pointer}
+.case-arrow:hover{background:#08131df2}
+.case-prev{left:12px}.case-next{right:12px}
+.case-controls{position:absolute;z-index:2;left:50%;bottom:13px;display:flex;gap:8px;transform:translateX(-50%)}
+.case-dot{width:9px;height:9px;padding:0;border:1px solid #fff;border-radius:50%;background:#ffffff66;cursor:pointer}
+.case-dot.is-active{width:23px;border-radius:8px;background:#fff}
+.case-arrow:focus-visible,.case-dot:focus-visible{outline:2px solid #28bd72;outline-offset:3px}
+.equipment-case .equipment-case-summary{margin:0;color:#58697d;font-size:12px;line-height:1.65}
+@media(max-width:560px){.case-arrow{width:34px;height:34px}.case-viewport{aspect-ratio:4/3}}
+@media(prefers-reduced-motion:reduce){.case-slide{transition:none}}
+
+.case-slide-image{width:100%;height:100%;background-repeat:no-repeat;background-size:100% 500%;background-color:#101923}
