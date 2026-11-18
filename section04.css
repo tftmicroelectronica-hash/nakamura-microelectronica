@@ -1,0 +1,25 @@
+/* Sección 04 · categorías y panel de casos */
+.equipment-grid-interactive{grid-template-columns:repeat(3,minmax(0,1fr))}
+.equipment-category{appearance:none;width:100%;min-height:112px;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:14px;row-gap:5px;padding:20px;text-align:left;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.equipment-category:hover,.equipment-category:focus-visible{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 28px #10263b12;outline:none}
+.equipment-category>span{grid-row:1/3;display:grid;place-items:center;width:42px;height:42px;border-radius:11px;background:#edf4ff;color:var(--blue);font-size:22px}
+.equipment-category>b{color:var(--navy);font:700 14px/1.35 'Manrope',sans-serif}
+.equipment-category>small{color:var(--muted);font-size:11px}.equipment-category>small i{font-style:normal;color:var(--blue);font-size:15px;margin-left:4px}
+.equipment-detail[hidden]{display:none!important}.equipment-detail{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:22px;background:#08131dcc;backdrop-filter:blur(7px)}
+.equipment-dialog{position:relative;width:min(1060px,100%);max-height:min(88vh,900px);overflow:auto;border-radius:18px;background:#f7f9fc;box-shadow:0 28px 90px #0005}
+.equipment-dialog-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 28px;background:#fff;border-bottom:1px solid #e2e8f0}
+.equipment-dialog-head .kicker{display:block;margin-bottom:6px}.equipment-dialog-head h2{margin:0;color:var(--navy);font:800 clamp(21px,3vw,30px)/1.15 'Manrope',sans-serif}
+.equipment-dialog-close{flex:0 0 42px;width:42px;height:42px;border:1px solid #d9e1eb;border-radius:50%;background:white;color:var(--navy);font-size:25px;cursor:pointer}
+.equipment-dialog-intro{padding:18px 28px 0;color:#607086;font-size:13px;line-height:1.65}
+.equipment-cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:22px 28px 28px}
+.equipment-case{overflow:hidden;border:1px solid #e0e7ef;border-radius:13px;background:#fff}
+.equipment-case img{display:block;width:100%;height:165px;object-fit:cover;background:#e8edf3}
+.equipment-case-body{padding:16px}.equipment-case-tag{display:inline-block;margin-bottom:9px;padding:5px 8px;border-radius:20px;background:#edf4ff;color:#2467d9;font-size:10px;font-weight:700;letter-spacing:.04em}
+.equipment-case h3{margin:0 0 9px;color:#13243a;font:800 15px/1.35 'Manrope',sans-serif}
+.equipment-case p{margin:0 0 10px;color:#58697d;font-size:12px;line-height:1.55}
+.equipment-case p strong{color:#1b2c42}.equipment-case .equipment-diagnosis{padding-top:10px;border-top:1px solid #edf0f4}
+.equipment-detail-note{margin:0 28px 25px;padding:12px 14px;border-left:3px solid #28bd72;border-radius:6px;background:#edf9f2;color:#506779;font-size:11px;line-height:1.55}
+body.equipment-modal-open{overflow:hidden}
+@media(max-width:850px){.equipment-grid-interactive{grid-template-columns:repeat(2,minmax(0,1fr))}.equipment-cases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.equipment-grid-interactive{grid-template-columns:1fr}.equipment-category{min-height:88px}.equipment-detail{padding:9px}.equipment-dialog{max-height:94vh;border-radius:13px}.equipment-dialog-head{padding:18px}.equipment-dialog-intro{padding:15px 18px 0}.equipment-cases{grid-template-columns:1fr;padding:16px 18px}.equipment-case img{height:190px}.equipment-detail-note{margin:0 18px 18px}}
+@media(prefers-reduced-motion:reduce){.equipment-category{transition:none}}
