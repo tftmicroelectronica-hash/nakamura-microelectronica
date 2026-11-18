@@ -15,12 +15,12 @@
       intro:"Casos de referencia para generadores portátiles y estacionarios, con énfasis en arranque, generación y estabilidad eléctrica.",
       cases:[
         {model:"Generador portátil a gasolina",tag:"No arranca",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 0%",alt:"Vista general del generador Cummins Onan P9500dfi",fault:"El motor gira con dificultad o no logra encender.",diagnosis:"Verificar combustible, bujía, filtro, compresión y circuito de apagado. Comprobar continuidad y estado del sistema de encendido."},
-        {model:"Generador VMAX — reparación y mantenimiento",tag:"Soldadura / mantenimiento completo",spriteCarousel:true,carousel:[
-          {src:"./assets/generadores/vmax-gallery.webp",position:"0%",alt:"Vista general del generador portátil VMAX GN13000EW"},
-          {src:"./assets/generadores/vmax-gallery.webp",position:"25%",alt:"Protección metálica del silenciador del generador VMAX"},
-          {src:"./assets/generadores/vmax-gallery.webp",position:"50%",alt:"Detalle de la pieza metálica desmontada para corregir la soldadura"},
-          {src:"./assets/generadores/vmax-gallery.webp",position:"75%",alt:"Detalle del conjunto de salida de gases del generador VMAX"},
-          {src:"./assets/generadores/vmax-gallery.webp",position:"100%",alt:"Mantenimiento del silenciador y componentes del motor VMAX"}
+        {model:"Generador VMAX — reparación y mantenimiento",tag:"Soldadura / mantenimiento completo",carousel:[
+          {src:"./vmax-01.webp",alt:"Vista general del generador portátil VMAX GN13000EW"},
+          {src:"./vmax-02.webp",alt:"Detalle del silenciador del generador VMAX"},
+          {src:"./vmax-03.webp",alt:"Protección metálica desmontada para corregir la soldadura"},
+          {src:"./vmax-04.webp",alt:"Detalle del conjunto de salida de gases del generador VMAX"},
+          {src:"./vmax-05.webp",alt:"Mantenimiento del silenciador y componentes del motor VMAX"}
         ],summary:"¡Confía en los expertos para mantener tu generador en óptimas condiciones! Recibimos un generador VMAX con la protección metálica de quemaduras mal soldada. Corregimos el error y realizamos un mantenimiento completo para asegurar su óptimo funcionamiento."},
         {model:"Generador: no entrega energía",tag:"Alternador / protección",imageSheet:"./assets/generadores/cummins-onan-p9500dfi-gallery.webp",imagePosition:"0% 100%",alt:"Detalle de componentes del motor del generador Cummins",fault:"El motor funciona, pero no hay tensión útil en la salida.",diagnosis:"Inspeccionar interruptor, cableado, excitación, AVR y bobinados; realizar pruebas de aislamiento según especificación del fabricante."},
         {model:"Mantenimiento y Reparación de Generador Portátil Cummins Onan P9500dfi",tag:"Mantenimiento preventivo y correctivo",carousel:[
